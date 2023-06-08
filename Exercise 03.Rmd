@@ -127,3 +127,18 @@ vornamen_2022 %>% head(10)
 vornamen_combined <- bind_rows(vornamen_2021, vornamen_2022)
 vornamen_combined %>% head(10)
 ```
+
+### Exercise 3f
+
+```{r}
+combined_counts_top10 <- vornamen_combined %>% 
+                         group_by(Vorname) %>% 
+                         summarize(combined_counts = sum(Anzahl)) %>%
+                         arrange(desc(combined_counts)) %>% 
+                         head(10)
+
+library("knitr")
+
+combined_counts_top10 %>% kable(caption = "Top 10 Names of 2021 and 2021 in Munich")
+```
+
