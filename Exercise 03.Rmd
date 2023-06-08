@@ -66,4 +66,12 @@ vornamen_2021 %>% tail(10)
 vornamen_2022 %>% tail(10)
 ```
 
-However, since the string value "4 oder weniger" cannot be converted to a integer datatype, therefore each column-value presenting this value has been converted to "NA".
+However, since the string value "4 oder weniger" cannot be converted to a integer datatype, therefore each column-value presenting this value has been converted to "NA". In order to not loose data and keep working with at least inaccurate results, these values can be replaced with an integer of value 4.
+
+```{r}
+vornamen_2021$Anzahl <- ifelse(is.na(vornamen_2021$Anzahl), 4, as.integer(vornamen_2021$Anzahl))
+vornamen_2022$Anzahl <- ifelse(is.na(vornamen_2022$Anzahl), 4, as.integer(vornamen_2022$Anzahl))
+
+vornamen_2021 %>% tail(10)
+vornamen_2022 %>% tail(10)
+```
