@@ -10,6 +10,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
+
 ## Exercise 1: Initializing git
 
 ### Exercise 1d
@@ -32,3 +33,37 @@ weaknesses
 ### Exercise 2a
 
 https://github.com/patrickab/exeRcise-sheet-3
+
+
+## Exercise 3
+
+### Exercise 3b
+
+```{r}
+library("tidyverse")
+
+vornamen_2021 <- read_csv(file.path("data", "vornamen_2021.csv"))
+vornamen_2022 <- read_csv(file.path("data", "vornamen_2022.csv"))
+
+typeof(vornamen_2021$Anzahl)
+typeof(vornamen_2022$Anzahl)
+```
+
+the values in the "Anzahl" column are stored as character strings instead of numeric values, as the CSV datatype typically stores tabular data (numbers and text) in plain text. Therefore, all column values are by default read in as character strings.
+
+```{r}
+vornamen_2021$Anzahl <- as.integer(vornamen_2021$Anzahl)
+vornamen_2022$Anzahl <- as.integer(vornamen_2022$Anzahl)
+
+vornamen_2021 %>% head(10)
+vornamen_2022 %>% head(10)
+```
+
+In both datasets the column "Anzahl" is now stored as integer datatype. Converting these string values to integer values now allows us to perform arithmetic operations on the data.
+
+```{r}
+vornamen_2021 %>% tail(10)
+vornamen_2022 %>% tail(10)
+```
+
+However, since the string value "4 oder weniger" cannot be converted to a integer datatype, therefore each column-value presenting this value has been converted to "NA".
