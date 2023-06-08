@@ -192,15 +192,6 @@ Additionally, if you want to calculate the row-wise means, you can use the rowMe
 row_means <- rowMeans(tax_data[, -1])
 row_means
 ```
-```{r}
-head(tax_data,10)
-```
-
-```{r}
-row_means <- rowMeans(tax_data[, -1])
-row_means
-```
-
 
 #### Exercise 4a Second Text Prompt
 
