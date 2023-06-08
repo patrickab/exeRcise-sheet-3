@@ -75,3 +75,37 @@ vornamen_2022$Anzahl <- ifelse(is.na(vornamen_2022$Anzahl), 4, as.integer(vornam
 vornamen_2021 %>% tail(10)
 vornamen_2022 %>% tail(10)
 ```
+
+
+### Exercise 3c
+
+The sum calculated below describes the maximum total number of babies born in 2022 and 2021 according to the dataset provided by the city of Munich.
+
+```{r}
+total_2021 <- sum(vornamen_2021$Anzahl, na.rm = TRUE)
+total_2022 <- sum(vornamen_2022$Anzahl, na.rm = TRUE)
+```
+
+Babies born in Munich, 2021: `r format(total_2021, scientific = FALSE)`
+
+Babies born in Munich, 2022: `r format(total_2022, scientific = FALSE)`
+
+According the dataset, and taking speciied inaccuracies into account, in Munich more babies were born in 2021, than in 2022.
+
+However, in order to determine, which year presented the bigger baby-boom, the increase of birth relative to the previous year needs to be calculated.
+
+```{r}
+vornamen_2020 <- read_csv(file.path("data", "vornamen_2020.csv"))
+vornamen_2020$Anzahl <- as.integer(vornamen_2020$Anzahl)
+vornamen_2020$Anzahl <- ifelse(is.na(vornamen_2020$Anzahl), 4, as.integer(vornamen_2020$Anzahl))
+total_2020 <- sum(vornamen_2022$Anzahl, na.rm = TRUE)
+
+increase_2021 <- (total_2021/total_2020 - 1) * 100
+increase_2022 <- (total_2022/total_2021 - 1) * 100
+```
+
+Increase of births in Munich, 2021 (relative to previous year): `r format(increase_2021, scientific = FALSE)`%
+
+Increase of births in Munich, 2022 (relative to previous year): `r format(increase_2022, scientific = FALSE)`%
+
+In 2021 total births increased, in 2022 total births decreased. Therefore 2021 presented the bigger baby-boom.
