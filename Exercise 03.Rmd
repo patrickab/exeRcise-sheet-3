@@ -212,3 +212,83 @@ row_means_with_name <- cbind(Name = tax_data$Name, Mean = row_means)
 
 row_means_with_name
 ```
+
+### Exercise 4b
+
+#### Exercise 4b Text Prompt
+
+in RStudio, explain what the rapply() function does. Create an easy example with mock data where the function is used.
+
+#### Exercise 4b Answer
+
+In RStudio, the rapply() function is used to apply a specified function recursively to elements of a list or nested list structure. It is particularly useful when you have a complex nested list and want to apply a function to each element in a consistent manner.
+
+The syntax for rapply() is as follows:
+
+rapply(object, f, classes = "ANY", how = "replace", ...)
+
+* object represents the list or nested list structure to which the function will be applied.
+
+* f is the function that you want to apply to each element.
+
+* classes is an optional argument that specifies the classes to which the function will be applied. By default, it is set to "ANY" which means that the function will be applied to all elements regardless of their class.
+
+* how determines the structure of the result. It can take three possible values: "replace" (default), "unlist", or "list".
+
+* ... represents additional arguments that can be passed to the function f.
+
+Now, let's create an example with mock data to illustrate the usage of `rapply()`. Suppose we have a nested list representing a hierarchical directory structure:
+
+```{r}
+directory <- list(
+  folder1 = list(
+    subfolder1 = list(
+      file1 = "data1.csv",
+      file2 = "data2.csv"
+    ),
+    subfolder2 = list(
+      file3 = "data3.csv",
+      file4 = "data4.csv"
+    )
+  ),
+  folder2 = list(
+    subfolder3 = list(
+      subsubfolder1 = list(
+        file5 = "data5.csv",
+        file6 = "data6.csv"
+      ),
+      subsubfolder2 = list(
+        file7 = "data7.csv",
+        file8 = "data8.csv"
+      )
+    ),
+    subfolder4 = list(
+      file9 = "data9.csv",
+      file10 = "data10.csv"
+    )
+  )
+)
+```
+
+In this example, we have four folders (folder1, folder2, subfolder1, subfolder2) and two subfolders (subsubfolder1, subsubfolder2). Each folder and subfolder contains files (file1 to file10) with different names.
+
+You can use the rapply() function to apply a function to each file in this nested directory structure For instance, let's define the function get_filename(). The get_filename() function uses the file_path_sans_ext() function from the tools package to remove the file extension. We pass this function as an argument to rapply() along with the directory object.
+
+```{r}
+get_filename <- function(file) {
+  tools::file_path_sans_ext(file)
+}
+
+result <- rapply(directory, get_filename, classes = "character")
+
+print(result)
+
+```
+
+#### Exercise 4b Own Words
+
+Rapply is a function, that can be used on recursive data structures, like linked lists, binary trees, directory structures, family trees, or any other kind of recursive tree structure. `rapply(recursive_structure, function)` recursively applies a user defined `function` to each element within a given `recursive_structure`. In a binary tree for example, rapply() could be used to convert binary sorted temperature data from celsius to fahrenheit. By specifying a function accordingly (regular expressions for [df01,...,dfn] and [data01.csv,...,datan.csv]) , it could also be used to recursively load all .csv files from a folderstructure as dataframes into an RStudio environment, instead of manually calling
+
+data1337 <- read_csv(file.path("data/path/to/subfolder", "data1337.csv"))
+
+for every element inside the folder.
