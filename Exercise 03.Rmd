@@ -142,3 +142,73 @@ library("knitr")
 combined_counts_top10 %>% kable(caption = "Top 10 Names of 2021 and 2021 in Munich")
 ```
 
+
+## Exercise 4
+
+### Exercise 4a
+
+#### Exercise 4a Text Prompt
+
+For this task: Specifically use ChatGPT to solve the task and submit your prompts in addition to the
+solution
+a) The code below does not work because the wrong apply function has been used. Find out which apply
+function would be correct and why it did not work. Correct the code. Also calculate the rowwise
+means.
+\###Create a sample data frame
+tax_data <- data.frame( Name = c(“Munich GmbH”, “ABC Inc.”, “Backpacks 1980”, “Bavarian Circus”),
+Tax_2019 = c(5000, 4000, 6000, 3500), Tax_2020 = c(4800, 4200, 5800, 3700), Tax_2021 = c(5200, 3800,
+5900, 3400) )
+\###Calculate column-wise means
+column_means <- lapply(tax_data[, -1], 2, mean)
+column_means
+
+#### Exercise 4a Answer
+
+The code provided is using the wrong apply function. Currently, it is using lapply() instead of sapply() to calculate the column-wise means. The lapply() function applies a given function to each element of a list or vector, but it does not simplify the result. On the other hand, sapply() is a variant of lapply() that simplifies the result to a vector or matrix if possible.
+
+To correct the code and calculate the column-wise means, you should replace lapply() with sapply().
+
+Here's the corrected code:
+
+```{r}
+tax_data <- data.frame(
+  Name = c("Munich GmbH", "ABC Inc.", "Backpacks 1980", "Bavarian Circus"),
+  Tax_2019 = c(5000, 4000, 6000, 3500),
+  Tax_2020 = c(4800, 4200, 5800, 3700),
+  Tax_2021 = c(5200, 3800, 5900, 3400)
+)
+
+# Calculate column-wise means
+column_means <- sapply(tax_data[, -1], mean)
+column_means
+
+```
+Additionally, if you want to calculate the row-wise means, you can use the rowMeans() function as follows:
+
+```{r}
+# Calculate row-wise means
+row_means <- rowMeans(tax_data[, -1])
+row_means
+```
+```{r}
+head(tax_data,10)
+```
+
+```{r}
+row_means <- rowMeans(tax_data[, -1])
+row_means
+```
+
+
+#### Exercise 4a Second Text Prompt
+
+how can i calculate rowwise means and add the "Name" of each row as column of the resulting object?
+
+#### Exercise 4a Second Answer
+
+```{r}
+row_means <- rowMeans(tax_data[, -1])
+row_means_with_name <- cbind(Name = tax_data$Name, Mean = row_means)
+
+row_means_with_name
+```
