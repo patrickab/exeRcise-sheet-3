@@ -69,8 +69,8 @@ vornamen_2022 %>% tail(10)
 However, since the string value "4 oder weniger" cannot be converted to a integer datatype, therefore each column-value presenting this value has been converted to "NA". In order to not loose data and keep working with at least inaccurate results, these values can be replaced with an integer of value 4. This will result in inaccurate results, as with a probability bordering on certainty not all of those NA's equal 4 in the real world. This leads to inaccuracy of results, and possibly even to incomparability of the datasets, especially if the real world average value of those NA's differs between both datasets and/or if the amount of NA's differs significantly.
 
 ```{r}
-vornamen_2021$Anzahl <- ifelse(is.na(vornamen_2021$Anzahl), 4, as.integer(vornamen_2021$Anzahl))
-vornamen_2022$Anzahl <- ifelse(is.na(vornamen_2022$Anzahl), 4, as.integer(vornamen_2022$Anzahl))
+vornamen_2021$Anzahl <- ifelse(is.na(vornamen_2021$Anzahl), as.integer(4), as.integer(vornamen_2021$Anzahl))
+vornamen_2022$Anzahl <- ifelse(is.na(vornamen_2022$Anzahl), as.integer(4), as.integer(vornamen_2022$Anzahl))
 
 vornamen_2021 %>% tail(10)
 vornamen_2022 %>% tail(10)
@@ -97,7 +97,7 @@ However, in order to determine, which year presented the bigger baby-boom, the i
 ```{r}
 vornamen_2020 <- read_csv(file.path("data", "vornamen_2020.csv"))
 vornamen_2020$Anzahl <- as.integer(vornamen_2020$Anzahl)
-vornamen_2020$Anzahl <- ifelse(is.na(vornamen_2020$Anzahl), 4, as.integer(vornamen_2020$Anzahl))
+vornamen_2020$Anzahl <- ifelse(is.na(vornamen_2020$Anzahl), as.integer(4), as.integer(vornamen_2020$Anzahl))
 total_2020 <- sum(vornamen_2022$Anzahl, na.rm = TRUE)
 
 increase_2021 <- (total_2021/total_2020 - 1) * 100
@@ -109,3 +109,15 @@ Increase of births in Munich, 2021 (relative to previous year): `r format(increa
 Increase of births in Munich, 2022 (relative to previous year): `r format(increase_2022, scientific = FALSE)`%
 
 In 2021 total births increased, in 2022 total births decreased. Therefore 2021 presented the bigger baby-boom.
+
+
+### Exercise 3d
+
+```{r}
+vornamen_2021 <- vornamen_2021 %>% mutate(year = as.integer(2021))
+vornamen_2022 <- vornamen_2022 %>% mutate(year = as.integer(2022))
+
+vornamen_2021 %>% head(10)
+vornamen_2022 %>% head(10)
+```
+
