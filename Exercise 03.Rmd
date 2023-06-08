@@ -14,10 +14,14 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ### Exercise 1d
 
-strengths:
+strengths
+
 * git is a version control tool, that allows to jump back in the development process and restore old versions of a file, if errors have occured. Version control also allows other people involved in a project to track changes. When developing software this is incredibally useful, as it allows other collaborating project members to examine, what changed since their last login, giving an opportunity easily get an overview over the often chaotic development process. Therefore git also allows developers to be working on the same version of the software, by ensuring that everyone is up-to-date.
+
 * Git is designed to be incredibly efficient and fast. It uses a highly compressed and optimized data storage format, which minimizes the size of the repository on disk and speeds up operations like cloning, committing, branching, and merging. Git's architecture and algorithms are optimized to handle large repositories and scale well with the growth of a project. It is also free and open source, making it an enormous advantage for companies, as they do not need to develop their own software, nor their own server infrastructure
 
-weaknesses:
+weaknesses
+
 * fully mastering git-fu takes lots of efford to accomplish. Furthmore at first it is usually very difficult for noobs to get into the git basics.
+
 * Git is primarily designed for version control of source code and text-based files. While Git can handle binary files, including large data files, it is not well-suited for managing them efficiently. Large data files can significantly increase the size of the Git repository. Git stores a complete copy of each version of every file in the repository, leading to limited scalability. Git is not designed to store repositories with large files, especially those that frequently change, as git needs to compare and iterate over both the old and the new file, every time that changes in such a big file are commited.
