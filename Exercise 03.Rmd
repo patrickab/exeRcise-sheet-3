@@ -79,7 +79,7 @@ vornamen_2022 %>% tail(10)
 
 ### Exercise 3c
 
-The sum calculated below describes the maximum total number of babies born in 2022 and 2021 according to the dataset provided by the city of Munich.
+The sum calculated below describes the maximum total number of babies born in 2022 and 2021 according to the dataset provided by the city of Munich. (https://opendata.muenchen.de/dataset/vornamen-von-neugeborenen)
 
 ```{r}
 total_2021 <- sum(vornamen_2021$Anzahl, na.rm = TRUE)
@@ -287,8 +287,8 @@ print(result)
 
 #### Exercise 4b Own Words
 
-Rapply is a function, that can be used on recursive data structures, like linked lists, binary trees, directory structures, family trees, or any other kind of recursive tree structure. `rapply(recursive_structure, function)` recursively applies a user defined `function` to each element within a given `recursive_structure`. In a binary tree for example, rapply() could be used to convert binary sorted temperature data from celsius to fahrenheit. By specifying a function accordingly (regular expressions for [df01,...,dfn] and [data01.csv,...,datan.csv]) , it could also be used to recursively load all .csv files from a folderstructure as dataframes into an RStudio environment, instead of manually calling
+Rapply is a function, that can be used on recursive data structures, like linked lists, binary trees, directory structures, family trees, or any other kind of recursive tree structure. `rapply(recursive_structure, function)` recursively applies a user defined `function` to each element within a given `recursive_structure`. In a binary tree for example, rapply() could be used to convert binary sorted temperature data from celsius to fahrenheit. By specifying a function accordingly (regular expressions for `[df01,...,dfn]` and `[data01.csv,...,datan.csv]`) , it could also be used to recursively load all `.csv` files from a folderstructure as dataframes into an RStudio environment, instead of manually calling
 
-data1337 <- read_csv(file.path("data/path/to/subfolder", "data1337.csv"))
+`data1337 <- read_csv(file.path("data/path/to/subfolder", "data1337.csv"))`
 
 for every element inside the folder.
