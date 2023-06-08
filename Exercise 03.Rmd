@@ -25,3 +25,10 @@ weaknesses
 * fully mastering git-fu takes lots of efford to accomplish. Furthmore at first it is usually very difficult for noobs to get into the git basics.
 
 * Git is primarily designed for version control of source code and text-based files. While Git can handle binary files, including large data files, it is not well-suited for managing them efficiently. Large data files can significantly increase the size of the Git repository. Git stores a complete copy of each version of every file in the repository, leading to limited scalability. Git is not designed to store repositories with large files, especially those that frequently change, as git needs to compare and iterate over both the old and the new file, every time that changes in such a big file are commited.
+
+
+## Exercise 2
+
+### Exercise 2a
+
+https://github.com/patrickab/exeRcise-sheet-3
